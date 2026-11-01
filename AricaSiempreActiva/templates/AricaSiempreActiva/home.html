@@ -1,0 +1,159 @@
+{% extends "AricaSiempreActiva/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="portada">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+
+            <!-- Texto -->
+            <div class="col-lg-6">
+                <h1 class="portada-titulo">
+                    Región de
+                    <span>Arica y Parinacota</span>
+                </h1>
+                <p class="portada-texto">
+                    La puerta norte de entrada a nuestro hermoso país. Te recibe con el desierto
+                    más árido del mundo, mezclando playas con un atrevido altiplano.
+                </p>
+                <a href="#" class="btn btn-ver">Ver destinos</a>
+            </div>
+
+            <!-- Foto -->
+            <div class="col-lg-6">
+                <div class="portada-foto">
+                    <img src="{% static 'AricaSiempreActiva/img/morro.jpg' %}"
+                        alt="Morro de Arica al atardecer" class="img-fluid">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="accesos">
+    <div class="container">
+        <h2 class="accesos-titulo">Explora la región</h2>
+        <p class="accesos-sub">Elige por dónde empezar</p>
+
+        <div class="row g-4">
+
+            <div class="col-12 col-md-4">
+                <a href="#" class="acceso">
+                    <span class="acceso-icono icono-coral"><i class="bi bi-geo-alt-fill"></i></span>
+                    <span class="acceso-barra"></span>
+                    <h3 class="acceso-nombre">¿Dónde ir?</h3>
+                    <p class="acceso-texto">Arica, valles, Camarones y altiplano: elige tu próximo destino.</p>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <a href="#" class="acceso">
+                    <span class="acceso-icono icono-amarillo"><i class="bi bi-compass-fill"></i></span>
+                    <span class="acceso-barra"></span>
+                    <h3 class="acceso-nombre">¿Qué hacer?</h3>
+                    <p class="acceso-texto">Aventura, cultura, gastronomía y eventos para vivir la región.</p>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <a href="#" class="acceso">
+                    <span class="acceso-icono icono-azul"><i class="bi bi-calendar2-check-fill"></i></span>
+                    <span class="acceso-barra"></span>
+                    <h3 class="acceso-nombre">Planifica tu viaje</h3>
+                    <p class="acceso-texto">Alojamiento, servicios y consejos para armar tu visita.</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="calendario">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+
+            <div class="col-lg-5">
+                <span class="calendario-etiqueta">Eventos y actividades</span>
+                <h2 class="calendario-titulo">Calendario turístico regional</h2>
+                <p class="calendario-texto">Los próximos eventos de la región, siempre al día.</p>
+                <a href="#" class="btn btn-ver">Ver todos los eventos</a>
+            </div>
+
+            <div class="col-lg-7">
+                {% for e in eventos %}
+                <article class="evento">
+                    <div class="evento-fecha">
+                        <span class="evento-dia">{{ e.fecha|date:"j" }}</span>
+                        <span class="evento-mes">{{ e.fecha|date:"M" }}</span>
+                    </div>
+                    <div>
+                        <h3 class="evento-nombre">{{ e.titulo }}</h3>
+                        <p class="evento-lugar"><i class="bi bi-geo-alt-fill"></i> {{ e.lugar }}</p>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="evento-vacio">
+                    <i class="bi bi-calendar-x"></i>
+                    <h3>No hay eventos disponibles</h3>
+                    <p>Por ahora no hay eventos programados para los próximos meses. Vuelve pronto.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="container seccion-aire">
+    <div class="row g-4">
+
+        <!-- Tarjeta Reservas -->
+        <div class="col-md-6">
+            <div class="tarjeta tarjeta-reservas">
+                <span class="tarjeta-pildora">Reservas en línea</span>
+                <h2 class="tarjeta-titulo">Reserva tus experiencias en la región</h2>
+                <p class="tarjeta-texto">Plataforma de reservas pensada para ti.</p>
+                <a href="#" class="btn-tarjeta">Ir a la plataforma</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta Carnavalapp -->
+        <div class="col-md-6">
+            <div class="tarjeta tarjeta-app">
+                <img src="{% static 'AricaSiempreActiva/img/carnavalapp.png' %}"
+                    alt="Logo Carnavalapp" class="tarjeta-logo">
+                <span class="tarjeta-pildora">App</span>
+                <h2 class="tarjeta-titulo">Descarga Carnavalapp</h2>
+                <p class="tarjeta-texto">Conoce el Carnaval Andino con realidad aumentada.</p>
+                <a href="#" class="btn-tarjeta">Conócela y descárgala</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Te esperamos -->
+<section class="container seccion-aire mb-5">
+    <div class="te-esperamos">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <h2 class="te-titulo">Te esperamos</h2>
+                <p class="te-texto">Suscríbete y recibe información, consejos y promociones para tus próximos viajes.</p>
+            </div>
+            <div class="col-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="{{ form.correo.id_for_label }}" class="form-label">Correo</label>
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        {{ form.correo }}
+                        <button type="submit" class="btn-tarjeta">Suscribirme</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arica Siempre Activa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    {% load static %}
+
+<link rel="stylesheet" href="{% static 'AricaSiempreActiva/css/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2">
+        <div class="container">
+
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'AricaSiempreActiva/img/logoRojo.jpg' %}"
+                    alt="Arica Siempre Activa" class="logo-nav">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal" aria-controls="menuPrincipal"
+                    aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-lg-4 me-auto align-items-lg-center">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">¿Dónde ir?</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Arica</a></li>
+                            <li><a class="dropdown-item" href="#">Valles</a></li>
+                            <li><a class="dropdown-item" href="#">Camarones</a></li>
+                            <li><a class="dropdown-item" href="#">Altiplano</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">¿Qué hacer?</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Aventura y Deporte</a></li>
+                            <li><a class="dropdown-item" href="#">Cultura y Carnaval</a></li>
+                            <li><a class="dropdown-item" href="#">Gastronomía y Clima</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Eventos</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios turísticos</a>
+                    </li>
+
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
+
+    {% if user.is_authenticated %}
+        <span class="nav-link">
+            Hola, {{ user.first_name|default:user.username }}
+        </span>
+
+        <a class="btn btn-login-nav" href="{% url 'logout' %}">
+            Cerrar sesión
+        </a>
+    {% else %}
+        <a class="btn btn-login-nav" href="{% url 'login' %}">
+            Iniciar sesión
+        </a>
+    {% endif %}
+
+    <a class="btn btn-planifica" href="#">
+        Planifica tu viaje
+    </a>
+
+</div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+    {% block content %}
+    
+    {% endblock content %}        
+    </main>
+
+    <footer class="footer-sitio">
+        <div class="container">
+
+            <!-- Logos -->
+            <div class="footer-logos">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_turismo.png' %}" alt="Arica Siempre Activa" class="logo-grande">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_transforma.png' %}" alt="Transforma Turismo">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_corfo.png' %}" alt="Corfo">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_gore.png' %}" alt="Gobierno Regional de Arica y Parinacota">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_core.png' %}" alt="Consejo Regional">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="{% static 'AricaSiempreActiva/img/logo_wsc.png' %}" alt="World Surf Cities Network">
+                </a>
+            </div>
+
+            <!-- Columnas -->
+            <div class="row g-4 footer-columnas">
+                <div class="col-12 col-md-4">
+                    <h4 class="footer-titulo">CONTENIDO</h4>
+                    <a href="{% url 'home' %}">Inicio</a>
+                    <a href="#">¿Quiénes somos?</a>
+                    <a href="#">Biblioteca digital</a>
+                    <a href="#">Boletines</a>
+                    <a href="#">Plataforma de inteligencia turística</a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h4 class="footer-titulo">ENLACES DE INTERÉS</h4>
+                    <a href="#">Esto es Chile</a>
+                    <a href="#">Chile es tuyo</a>
+                    <a href="#">Chile.travel</a>
+                    <a href="#">Museo San Miguel de Azapa</a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h4 class="footer-titulo">SÍGUENOS</h4>
+                    <div class="footer-redes">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="X">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Línea final -->
+            <p class="footer-copy">© 2026 Arica Siempre Activa · Región de Arica y Parinacota</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        const notyf = new Notyf({
+            duration: 4000,
+            position: { x: 'right', y: 'top' }
+        });
+        {% for message in messages %}
+            {% if message.level_tag == 'success' %}
+                notyf.success("{{ message|escapejs }}");
+            {% else %}
+                notyf.error("{{ message|escapejs }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    
+</body>
+
+</html>

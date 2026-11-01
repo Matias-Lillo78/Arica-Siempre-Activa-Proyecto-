@@ -1,0 +1,228 @@
+{% extends 'AricaSiempreActiva/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="cuenta-seccion">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-5">
+
+            <div class="col-lg-6" id="texto-registro">
+                <span class="cuenta-etiqueta">Mi cuenta</span>
+
+                <h1 class="cuenta-titulo">
+                    Únete y vive
+                    <span>la región</span>
+                </h1>
+
+                <p class="cuenta-descripcion">
+                    Crea tu cuenta para inscribirte en experiencias
+                    y tener todas tus reservas en un solo lugar.
+                </p>
+
+                <div class="cuenta-beneficio">
+                    <span>✓</span> Reserva en pocos pasos
+                </div>
+                <div class="cuenta-beneficio">
+                    <span>✓</span> Tus inscripciones en un solo lugar
+                </div>
+                <div class="cuenta-beneficio">
+                    <span>✓</span> Gremios con sello de confianza
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="cuenta-card">
+
+                    <h2>Crear cuenta</h2>
+                    <p>Completa tus datos para registrarte.</p>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="cuenta-tabs">
+                        <button type="button" class="cuenta-tab activo"
+                                id="tab-turista" onclick="cambiarTipo('turista')">
+                            Turista
+                        </button>
+
+                        <button type="button" class="cuenta-tab"
+                                id="tab-gremio" onclick="cambiarTipo('gremio')">
+                            Gremio
+                        </button>
+                    </div>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="rol" id="rol" value="turista">
+
+                        <div class="mb-3" id="campos-nombre">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="first_name"
+                                   class="form-control cuenta-input"
+                                   placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="mb-3" id="campos-apellido">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" name="last_name"
+                                   class="form-control cuenta-input"
+                                   placeholder="Tu apellido" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo</label>
+                            <input type="email" name="email"
+                                   class="form-control cuenta-input"
+                                   placeholder="nombre@correo.cl" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre de usuario</label>
+                            <input type="text" name="username"
+                                   class="form-control cuenta-input"
+                                   placeholder="Elige un usuario" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="password"
+                                       class="form-control cuenta-input"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Repetir contraseña</label>
+                                <input type="password" name="password2"
+                                       class="form-control cuenta-input"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div id="datos-gremio" style="display: none;">
+
+                            <h5 class="cuenta-subtitulo">Datos del gremio</h5>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del gremio</label>
+                                <input type="text" name="nombre_gremio"
+                                       class="form-control cuenta-input"
+                                       placeholder="Nombre de tu empresa">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Categoría turística</label>
+                                <select name="categoria" class="form-select cuenta-input">
+                                    <option value="">Selecciona una categoría</option>
+                                    <option value="Alojamiento">Alojamiento</option>
+                                    <option value="Gastronomía">Gastronomía</option>
+                                    <option value="Deporte aventura">Deporte aventura</option>
+                                    <option value="Turismo cultural">Turismo cultural</option>
+                                    <option value="Transporte">Transporte</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Descripción de servicios</label>
+                                <textarea name="descripcion_servicios"
+                                          class="form-control cuenta-input"
+                                          rows="3"
+                                          placeholder="Describe tus servicios"></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input type="text" name="telefono"
+                                           class="form-control cuenta-input"
+                                           placeholder="+56 9 1234 5678">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Sitio web</label>
+                                    <input type="url" name="sitio_web"
+                                           class="form-control cuenta-input"
+                                           placeholder="www.tugremio.cl">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Dirección</label>
+                                <input type="text" name="direccion"
+                                       class="form-control cuenta-input"
+                                       placeholder="Dirección en Arica">
+                            </div>
+
+                            <div class="cuenta-aviso">
+                                <i class="bi bi-info-circle"></i>
+                                El sello de confianza se solicita después desde tu panel.
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn-cuenta mt-3">
+                            Crear cuenta
+                        </button>
+
+                    </form>
+
+                    <p class="cuenta-pie">
+                        ¿Ya tienes cuenta?
+                        <a href="{% url 'login' %}">Inicia sesión</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    function cambiarTipo(tipo) {
+
+        const esGremio = tipo === 'gremio';
+
+        document.getElementById('rol').value = tipo;
+
+        document.getElementById('tab-turista').classList.toggle(
+            'activo', !esGremio
+        );
+
+        document.getElementById('tab-gremio').classList.toggle(
+            'activo', esGremio
+        );
+
+        document.getElementById('datos-gremio').style.display =
+            esGremio ? 'block' : 'none';
+
+        document.getElementById('texto-registro').querySelector('h1').innerHTML =
+            esGremio ? 'Suma tu gremio <span>a la región</span>' :
+                       'Únete y vive <span>la región</span>';
+
+        document.getElementById('texto-registro').querySelector('p').textContent =
+            esGremio ?
+            'Crea el perfil de tu empresa, publica tus actividades y solicita el sello de confianza.' :
+            'Crea tu cuenta para inscribirte en experiencias y tener todas tus reservas en un solo lugar.';
+
+        document.getElementById('campos-nombre').style.display =
+            esGremio ? 'none' : 'block';
+
+        document.getElementById('campos-apellido').style.display =
+            esGremio ? 'none' : 'block';
+
+        document.querySelector('[name="first_name"]').required = !esGremio;
+        document.querySelector('[name="last_name"]').required = !esGremio;
+    }
+</script>
+
+{% endblock content %}
+```
