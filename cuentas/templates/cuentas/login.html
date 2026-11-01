@@ -1,0 +1,67 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar sesión | Arica Siempre Activa</title>
+
+    <link rel="stylesheet" href="{% static 'AricaSiempreActiva/CSS/style.css' %}">
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <h1>Arica Siempre Activa</h1>
+            <h2>Iniciar sesión</h2>
+
+            <p>Ingresa tus datos para acceder a la plataforma.</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Ingresa tu usuario"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Ingresa tu contraseña"
+                        required
+                    >
+                </div>
+
+                <button type="submit">Ingresar</button>
+            </form>
+
+            <a href="/">Volver al inicio</a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
