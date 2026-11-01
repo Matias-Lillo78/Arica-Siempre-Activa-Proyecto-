@@ -1,0 +1,118 @@
+{% extends 'AricaSiempreActiva/base.html' %}
+{% load static %}
+
+{% block title %}¿Quiénes somos? | Arica Siempre Activa{% endblock title %}
+
+{% block content %}
+
+<!-- Cabecera -->
+<section class="pagina-cabecera">
+    <div class="container">
+        <p class="migas">
+            <a href="{% url 'home' %}">Inicio</a> / <span>¿Quiénes somos?</span>
+        </p>
+        <h1>¿Quiénes somos?</h1>
+        <p class="pagina-sub">Arica Siempre Activa: el programa que impulsa CORFO para el turismo de la región.</p>
+    </div>
+</section>
+
+<!-- El Programa -->
+<section class="container seccion-pagina">
+    <span class="tarjeta-pildora">El programa</span>
+    <h2 class="titulo-seccion">El Programa</h2>
+
+    <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-7">
+            <div class="programa-texto">
+                <p>“Arica Siempre Activa” que impulsa CORFO, desde sus inicios en el año 2017, se ha caracterizado por trabajar de manera asociativa con los diversos actores que conforman la cadena de valor del sector turístico y deportivo de la Región de Arica y Parinacota, sentando las bases para un modelo de articulación público — privada representada por una Gobernanza Turística dinámica que mantiene una Visión compartida y una Hoja de Ruta de 10 años</p>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="dato"><strong>2017</strong><span>Año de inicio del programa</span></div>
+            <div class="dato"><strong>10 años</strong><span>Hoja de Ruta compartida</span></div>
+            <div class="dato"><strong>30</strong><span>Miembros en la Gobernanza Turística</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Organigrama -->
+<section class="fondo-crema seccion-pagina">
+    <div class="container">
+        <span class="tarjeta-pildora">Gobernanza</span>
+        <h2 class="titulo-seccion">Organigrama Gobernanza</h2>
+        <p class="texto-grande">La actual Gobernanza Turística del programa la conforman 30 miembros representantes de diversas instituciones públicas, privadas, la comunidad organizada y la academia, quienes entregan las orientaciones estratégicas necesarias para el logro de los desafíos planteados.</p>
+
+        <div class="organigrama">
+            <div class="organigrama-scroll">
+                <img src="{% static 'AricaSiempreActiva/img/organigrama.png' %}"
+                    alt="Organigrama de la Gobernanza Turística Arica Siempre Activa">
+            </div>
+            <p class="organigrama-aviso d-md-none">← Desliza para ver el organigrama completo →</p>
+        </div>
+    </div>
+</section>
+
+<!-- Equipo Técnico -->
+<section class="container seccion-pagina">
+    <span class="tarjeta-pildora">Programa</span>
+    <h2 class="titulo-seccion">Equipo Técnico</h2>
+
+    <div class="row g-3 g-lg-4">
+        {% for persona in equipo %}
+            <div class="col-md-6 col-lg-4">
+                <div class="persona">
+                    <div class="persona-avatar">{{ persona.iniciales }}</div>
+                    <div>
+                        <p class="persona-nombre">{{ persona.nombre }}</p>
+                        <p class="persona-cargo">{{ persona.cargo }}</p>
+                        <p class="persona-inst">{{ persona.institucion }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Aliados -->
+<section class="fondo-crema seccion-pagina">
+    <div class="container">
+        <span class="tarjeta-pildora">Aliados</span>
+        <h2 class="titulo-seccion">Quienes forman la Gobernanza</h2>
+
+        {% for grupo in grupos %}
+            <h3 class="subtitulo-grupo">{{ grupo.titulo }}</h3>
+            <div class="row row-cols-3 row-cols-lg-6 g-2 g-md-3 mb-5">
+                {% for aliado in grupo.aliados %}
+                    <div class="col">
+                        <div class="logo-tile">
+                            <img src="{% static 'AricaSiempreActiva/img/aliados/'|add:aliado.logo %}"
+                                alt="{{ aliado.nombre }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Comité Ejecutivo -->
+<section class="container seccion-pagina">
+    <span class="tarjeta-pildora">Gobernanza</span>
+    <h2 class="titulo-seccion">Comité Ejecutivo</h2>
+
+    <div class="row row-cols-2 row-cols-lg-4 g-3">
+        {% for inst in comite %}
+            <div class="col">
+                <a href="{{ inst.url }}" class="comite-card" target="_blank" rel="noopener noreferrer">
+                    <div class="comite-logo">
+                        <img src="{% static 'AricaSiempreActiva/img/aliados/'|add:inst.logo %}"
+                            alt="{{ inst.nombre }}">
+                    </div>
+                    <span class="comite-dominio">{{ inst.dominio }} →</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}
