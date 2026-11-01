@@ -61,7 +61,27 @@
 
                 </ul>
 
-                <a class="btn btn-planifica mt-2 mt-lg-0" href="#">Planifica tu viaje</a>
+                <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
+
+    {% if user.is_authenticated %}
+        <span class="nav-link">
+            Hola, {{ user.first_name|default:user.username }}
+        </span>
+
+        <a class="btn btn-login-nav" href="{% url 'logout' %}">
+            Cerrar sesión
+        </a>
+    {% else %}
+        <a class="btn btn-login-nav" href="{% url 'login' %}">
+            Iniciar sesión
+        </a>
+    {% endif %}
+
+    <a class="btn btn-planifica" href="#">
+        Planifica tu viaje
+    </a>
+
+</div>
             </div>
 
         </div>
