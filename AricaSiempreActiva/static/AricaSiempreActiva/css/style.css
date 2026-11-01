@@ -1,69 +1,160 @@
 /* ---------- Header ---------- */
-.logo-nav { 
-    height: 60px; 
-    width: auto; }
+
+.logo-nav {
+    height: 60px;
+    width: auto;
+}
 
 @media (max-width: 991px) {
-    .logo-nav { height: 48px; }
+    .logo-nav {
+        height: 48px;
+    }
 }
 
 /* Menús desplegables */
-.dropdown-menu { border: 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, .12); padding: .5rem; }
-.dropdown-item { border-radius: 8px; padding: .55rem .9rem; }
 
-/* Botón destacado "Planifica tu viaje" */
-.btn-planifica:hover,
-.btn-planifica:focus,
-.btn-planifica:active { background: #c8321e; color: #fff; }
-
-/* Computador: los menús se abren al pasar el puntero */
-
-
-/* Animación de los menús desplegables */
-@keyframes menu-rebote {
-    0%   { opacity: 0; transform: translateY(-10px) scale(.96); }
-    60%  { opacity: 1; transform: translateY(3px) scale(1.01); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+.dropdown-menu {
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+    padding: .5rem;
 }
 
-.dropdown-menu.show { animation: menu-rebote .3s ease-out; }
-
-/* Para quienes desactivan las animaciones en su dispositivo */
-@media (prefers-reduced-motion: reduce) {
-    .dropdown-menu.show,
-    .navbar .dropdown:hover > .dropdown-menu { animation: none; }
+.dropdown-item {
+    border-radius: 8px;
+    padding: .55rem .9rem;
 }
 
-/* Enlaces del menú: el color cambia solo con puntero real o con teclado */
-.navbar .nav-link { color: #14212b; font-weight: 500; }
+/* Enlaces del menú */
+
+.navbar .nav-link {
+    color: #14212b;
+    font-weight: 500;
+}
+
 @media (hover: hover) {
-    .navbar .nav-link:hover { color: #c8321e; }
+    .navbar .nav-link:hover {
+        color: #c8321e;
+    }
 }
-.navbar .nav-link:focus-visible { color: #c8321e; }
 
-/* Opciones dentro de los menús */
-@media (hover: hover) {
-    .dropdown-item:hover { background: #f3f5f8; color: #c8321e; }
+.navbar .nav-link:focus-visible {
+    color: #c8321e;
 }
-.dropdown-item:focus-visible { background: #f3f5f8; color: #c8321e; }
 
-/* Botón "Planifica tu viaje" */
+/* Alineación de navegación */
+
+.navbar .container {
+    align-items: center;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+}
+
+/* Botón Iniciar sesión */
+
+.btn-login-nav {
+    color: #04182a;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-login-nav:hover {
+    color: #c32d36;
+}
+
+/* Botón Planifica tu viaje */
+
 .btn-planifica,
 .btn-planifica:hover,
 .btn-planifica:focus {
-    background: #04182a; color: #fff; border: 0; box-shadow: none;
-    border-radius: 999px; padding: .55rem 1.4rem; font-weight: 600;
+    background: #04182a;
+    color: #fff;
+    border: 0;
+    box-shadow: none;
+    border-radius: 999px;
+    padding: .55rem 1.4rem;
+    font-weight: 600;
     transition: background .2s ease;
 }
-@media (hover: hover) {
-    .btn-planifica:hover { background: #c8321e; }
-}
-.btn-planifica:active,
-.btn-planifica:focus-visible { background: #c8321e; color: #fff; }
 
-/* Computador: el menú depende solo del puntero, no del clic */
+@media (hover: hover) {
+    .btn-planifica:hover {
+        background: #c8321e;
+    }
+}
+
+.btn-planifica:active,
+.btn-planifica:focus-visible {
+    background: #c8321e;
+    color: #fff;
+}
+
+/* Alineación de botones del navbar */
+
+.navbar .d-flex {
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-login-nav,
+.btn-planifica {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* Opciones dentro de los menús */
+
+@media (hover: hover) {
+    .dropdown-item:hover {
+        background: #f3f5f8;
+        color: #c8321e;
+    }
+}
+
+.dropdown-item:focus-visible {
+    background: #f3f5f8;
+    color: #c8321e;
+}
+
+/* Animación de menús */
+
+@keyframes menu-rebote {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(.96);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(3px) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dropdown-menu.show {
+    animation: menu-rebote .3s ease-out;
+}
+
+/* Computador: menú al pasar el puntero */
+
 @media (min-width: 992px) {
-    .navbar .dropdown-menu.show { display: none; }
+    .navbar .dropdown-menu.show {
+        display: none;
+    }
+
     .navbar .dropdown:hover > .dropdown-menu {
         display: block;
         margin-top: 0;
@@ -71,11 +162,22 @@
     }
 }
 
+/* Desactivar animaciones si el usuario lo solicita */
+
+@media (prefers-reduced-motion: reduce) {
+    .dropdown-menu.show,
+    .navbar .dropdown:hover > .dropdown-menu {
+        animation: none;
+    }
+}
+
+
 /* ---------- Portada ---------- */
+
 .portada {
     background: #fbf1e6;
     padding: 3rem 0;
-    overflow: hidden;          /* evita que los círculos creen scroll horizontal en celular */
+    overflow: hidden;
 }
 
 .portada-titulo {
@@ -84,7 +186,11 @@
     line-height: 1.15;
     color: #04182a;
 }
-.portada-titulo span { display: block; color: #c32d36; }
+
+.portada-titulo span {
+    display: block;
+    color: #c32d36;
+}
 
 .portada-texto {
     font-size: 1.1rem;
@@ -94,24 +200,41 @@
     margin: 1rem 0 1.75rem;
 }
 
-/* Botón "Ver destinos" */
+/* Botón Ver destinos */
+
 .btn-ver,
 .btn-ver:hover,
 .btn-ver:focus {
-    background: #c32d36; color: #fff; border: 0;
-    border-radius: 999px; padding: .7rem 1.8rem; font-weight: 600;
-    box-shadow: none; transition: background .2s ease;
+    background: #c32d36;
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: .7rem 1.8rem;
+    font-weight: 600;
+    box-shadow: none;
+    transition: background .2s ease;
 }
+
 @media (hover: hover) {
-    .btn-ver:hover { background: #04182a; }
+    .btn-ver:hover {
+        background: #04182a;
+    }
 }
-.btn-ver:active { background: #04182a; color: #fff; }
+
+.btn-ver:active {
+    background: #04182a;
+    color: #fff;
+}
 
 /* Foto con círculos de fondo */
-.portada-foto { position: relative; }
+
+.portada-foto {
+    position: relative;
+}
 
 .portada-foto img {
-    position: relative; z-index: 1;
+    position: relative;
+    z-index: 1;
     width: 100%;
     border-radius: 1.5rem;
     box-shadow: 0 1rem 2.5rem rgba(60, 30, 10, .25);
@@ -124,114 +247,258 @@
     border-radius: 50%;
     aspect-ratio: 1;
 }
-.portada-foto::before { width: 55%; background: #f6d3c4; top: -12%; right: -10%; }
-.portada-foto::after  { width: 22%; background: #fce3a8; bottom: -8%; left: -6%; }
+
+.portada-foto::before {
+    width: 55%;
+    background: #f6d3c4;
+    top: -12%;
+    right: -10%;
+}
+
+.portada-foto::after {
+    width: 22%;
+    background: #fce3a8;
+    bottom: -8%;
+    left: -6%;
+}
 
 
 /* ---------- Accesos rápidos ---------- */
-.accesos { background: #f4f5f7; padding: 4rem 0; }
+
+.accesos {
+    background: #f4f5f7;
+    padding: 4rem 0;
+}
 
 .accesos-titulo {
-    text-align: center; color: #04182a;
-    font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 700;
+    text-align: center;
+    color: #04182a;
+    font-size: clamp(1.7rem, 4vw, 2.2rem);
+    font-weight: 700;
 }
-.accesos-sub { text-align: center; color: #566573; margin-bottom: 2.5rem; }
+
+.accesos-sub {
+    text-align: center;
+    color: #566573;
+    margin-bottom: 2.5rem;
+}
 
 /* Cada opción */
+
 .acceso {
-    display: block; text-align: center; text-decoration: none; color: inherit;
-    padding: 2rem 1.5rem; border-radius: 1.25rem;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 2rem 1.5rem;
+    border-radius: 1.25rem;
     transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
 
 .acceso-icono {
-    width: 5.5rem; height: 5.5rem; border-radius: 50%;
-    display: inline-grid; place-items: center; font-size: 2.3rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    font-size: 2.3rem;
 }
-.acceso-icono i { line-height: 1; }
 
-.icono-coral    { background: #f6d3c4; color: #c32d36; }
-.icono-amarillo { background: #fce3a8; color: #a86b00; }
-.icono-azul     { background: #d9e5f0; color: #04182a; }
+.acceso-icono i {
+    line-height: 1;
+}
+
+.icono-coral {
+    background: #f6d3c4;
+    color: #c32d36;
+}
+
+.icono-amarillo {
+    background: #fce3a8;
+    color: #a86b00;
+}
+
+.icono-azul {
+    background: #d9e5f0;
+    color: #04182a;
+}
 
 .acceso-barra {
-    display: block; width: 3.5rem; height: 4px; border-radius: 2px;
-    background: #04182a; margin: 1.25rem auto;
+    display: block;
+    width: 3.5rem;
+    height: 4px;
+    border-radius: 2px;
+    background: #04182a;
+    margin: 1.25rem auto;
 }
-.acceso-nombre { font-size: 1.5rem; font-weight: 700; color: #04182a; margin-bottom: .5rem; }
-.acceso-texto  { color: #566573; line-height: 1.6; max-width: 19rem; margin: 0 auto; }
 
-/* Se levanta al pasar el puntero (solo con mouse) o al navegar con teclado */
+.acceso-nombre {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #04182a;
+    margin-bottom: .5rem;
+}
+
+.acceso-texto {
+    color: #566573;
+    line-height: 1.6;
+    max-width: 19rem;
+    margin: 0 auto;
+}
+
+/* Efectos de accesos */
+
 @media (hover: hover) {
     .acceso:hover {
-        background: #fff; transform: translateY(-10px);
+        background: #fff;
+        transform: translateY(-10px);
         box-shadow: 0 1.1rem 2.5rem rgba(4, 24, 42, .14);
     }
 }
+
 .acceso:focus-visible {
-    outline: none; background: #fff; transform: translateY(-10px);
+    outline: none;
+    background: #fff;
+    transform: translateY(-10px);
     box-shadow: 0 1.1rem 2.5rem rgba(4, 24, 42, .14);
 }
 
-/* En celular: se hunde un poquito al tocarlo */
-.acceso:active { transform: scale(.98); }
+.acceso:active {
+    transform: scale(.98);
+}
 
 @media (prefers-reduced-motion: reduce) {
-    .acceso { transition: none; }
+    .acceso {
+        transition: none;
+    }
 }
+
 
 /* ---------- Calendario de eventos ---------- */
-.calendario { padding: 4rem 0; }
+
+.calendario {
+    padding: 4rem 0;
+}
 
 .calendario-etiqueta {
-    display: inline-block; background: #e3f4f8; color: #126a7c;
-    font-size: .8rem; font-weight: 600;
-    padding: .3rem .8rem; border-radius: 999px; margin-bottom: 1rem;
+    display: inline-block;
+    background: #e3f4f8;
+    color: #126a7c;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .3rem .8rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
 }
-.calendario-titulo {
-    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700;
-    color: #04182a; line-height: 1.2;
-}
-.calendario-texto { color: #566573; margin: .75rem 0 1.5rem; }
 
-/* Tarjeta de cada evento */
+.calendario-titulo {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: #04182a;
+    line-height: 1.2;
+}
+
+.calendario-texto {
+    color: #566573;
+    margin: .75rem 0 1.5rem;
+}
+
+/* Tarjeta de evento */
+
 .evento {
-    display: flex; align-items: center; gap: 1.25rem;
-    background: #fff; border-radius: 1.1rem;
-    padding: 1rem 1.25rem; margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: #fff;
+    border-radius: 1.1rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
     box-shadow: 0 .4rem 1.4rem rgba(4, 24, 42, .10);
 }
+
 .evento-fecha {
-    flex: 0 0 4rem; height: 4rem; border-radius: .9rem;
-    background: #04182a; color: #fff; line-height: 1.1;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex: 0 0 4rem;
+    height: 4rem;
+    border-radius: .9rem;
+    background: #04182a;
+    color: #fff;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.evento-dia { font-size: 1.4rem; font-weight: 700; }
-.evento-mes { font-size: .75rem; text-transform: uppercase; }
-.evento-nombre { font-size: 1.15rem; font-weight: 700; color: #04182a; margin: 0; }
-.evento-lugar { color: #566573; font-size: .95rem; margin: .2rem 0 0; }
+
+.evento-dia {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.evento-mes {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+.evento-nombre {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #04182a;
+    margin: 0;
+}
+
+.evento-lugar {
+    color: #566573;
+    font-size: .95rem;
+    margin: .2rem 0 0;
+}
 
 /* Cuando no hay eventos */
-.evento-vacio {
-    background: #f4f5f7; border: 2px dashed #cfd6dd; border-radius: 1.1rem;
-    text-align: center; padding: 3rem 1.5rem;
-}
-.evento-vacio i { font-size: 3rem; color: #8a97a3; }
-.evento-vacio h3 { font-size: 1.4rem; font-weight: 700; color: #04182a; margin: .75rem 0 .5rem; }
-.evento-vacio p { color: #566573; margin: 0; }
 
-/* Tarjetas */
+.evento-vacio {
+    background: #f4f5f7;
+    border: 2px dashed #cfd6dd;
+    border-radius: 1.1rem;
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.evento-vacio i {
+    font-size: 3rem;
+    color: #8a97a3;
+}
+
+.evento-vacio h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #04182a;
+    margin: .75rem 0 .5rem;
+}
+
+.evento-vacio p {
+    color: #566573;
+    margin: 0;
+}
+
+
+/* ---------- Tarjetas ---------- */
+
 .tarjeta {
     position: relative;
     height: 100%;
-    padding: 2.5rem 2rem;      /* antes 2rem: ahora más arriba y abajo */
-    min-height: 19rem;         /* altura mínima para que no se vean achatadas */
+    padding: 2.5rem 2rem;
+    min-height: 19rem;
     border-radius: 1.25rem;
     color: #fff;
     box-shadow: 0 8px 24px rgba(4, 24, 42, 0.18);
 }
-.tarjeta-reservas { background: #04182a; }
-.tarjeta-app { background: #2d1f4e; }
+
+.tarjeta-reservas {
+    background: #04182a;
+}
+
+.tarjeta-app {
+    background: #2d1f4e;
+}
 
 .tarjeta-pildora {
     display: inline-block;
@@ -242,19 +509,22 @@
     font-size: 0.8rem;
     font-weight: 700;
 }
+
 .tarjeta-titulo {
-    margin: 1.5rem 0 1rem;     /* más espacio sobre y bajo el título */
+    margin: 1.5rem 0 1rem;
     font-size: clamp(1.4rem, 3vw, 1.8rem);
     font-weight: 700;
     line-height: 1.25;
 }
 
 .tarjeta-texto {
-    margin-bottom: 2.5rem;     /* más separación antes del botón */
+    margin-bottom: 2.5rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.75);
 }
+
 /* Logo arriba a la derecha */
+
 .tarjeta-logo {
     position: absolute;
     top: 1.25rem;
@@ -266,6 +536,7 @@
 }
 
 /* Botón rojo */
+
 .btn-tarjeta {
     display: inline-block;
     padding: 0.7rem 1.4rem;
@@ -277,34 +548,57 @@
     text-align: center;
     text-decoration: none;
 }
-@media (hover: hover) {
-    .btn-tarjeta:hover { background: #a3232b; color: #fff; }
-}
-.btn-tarjeta:focus-visible { outline: 3px solid #5fd0e6; outline-offset: 2px; }
 
-/* Separación entre las dos tarjetas y las secciones */
-.row.g-4 { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
+@media (hover: hover) {
+    .btn-tarjeta:hover {
+        background: #a3232b;
+        color: #fff;
+    }
+}
+
+.btn-tarjeta:focus-visible {
+    outline: 3px solid #5fd0e6;
+    outline-offset: 2px;
+}
+
+/* Separación entre tarjetas */
+
+.row.g-4 {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 2rem;
+}
 
 /* Te esperamos */
+
 .te-esperamos {
     padding: 2.5rem 2rem;
     border-radius: 1.25rem;
     background: #eef3f7;
 }
-.te-titulo { margin-bottom: 0.75rem; color: #04182a; font-weight: 700; }
-.te-texto { margin: 0; line-height: 1.6; color: #566573; }
-.te-esperamos .form-label { margin-bottom: 0.5rem; }
 
-/* Celular */
-@media (max-width: 575px) {
-    .tarjeta { padding: 1.5rem; }
-    .tarjeta-logo { width: 4rem; height: 4rem; top: 1rem; right: 1rem; }
-    .btn-tarjeta { width: 100%; }
+.te-titulo {
+    margin-bottom: 0.75rem;
+    color: #04182a;
+    font-weight: 700;
 }
 
-.seccion-aire { margin-top: 5rem; }
+.te-texto {
+    margin: 0;
+    line-height: 1.6;
+    color: #566573;
+}
 
-/* ===== Footer ===== */
+.te-esperamos .form-label {
+    margin-bottom: 0.5rem;
+}
+
+.seccion-aire {
+    margin-top: 5rem;
+}
+
+
+/* ---------- Footer ---------- */
+
 .footer-sitio {
     margin-top: 5rem;
     padding: 3.5rem 0 1.5rem;
@@ -313,25 +607,40 @@
     color: #04182a;
 }
 
-/* Logos */
+/* Logos institucionales */
+
 .footer-logos {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    justify-content: space-around;
+    gap: 2rem;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid #e6d5c3;
 }
+
+.footer-logos a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .footer-logos img {
     height: 3.5rem;
     width: auto;
-    max-width: 100%;
+    max-width: 150px;
+    object-fit: contain;
 }
-.footer-logos .logo-grande { height: 5rem; }
+
+.footer-logos .logo-grande {
+    height: 5rem;
+}
 
 /* Columnas */
-.footer-columnas { padding-top: 2.5rem; }
+
+.footer-columnas {
+    padding-top: 2.5rem;
+}
 
 .footer-titulo {
     margin-bottom: 1.1rem;
@@ -340,18 +649,27 @@
     letter-spacing: 0.1rem;
     color: #c32d36;
 }
+
 .footer-columnas a {
     display: block;
     margin-bottom: 0.75rem;
     color: #44566a;
     text-decoration: none;
 }
+
 @media (hover: hover) {
-    .footer-columnas a:hover { color: #c32d36; }
+    .footer-columnas a:hover {
+        color: #c32d36;
+    }
 }
 
-/* Redes */
-.footer-redes { display: flex; gap: 0.6rem; }
+/* Redes sociales */
+
+.footer-redes {
+    display: flex;
+    gap: 0.6rem;
+}
+
 .footer-columnas .footer-redes a {
     display: flex;
     align-items: center;
@@ -363,11 +681,16 @@
     background: #04182a;
     color: #fff;
 }
+
 @media (hover: hover) {
-    .footer-columnas .footer-redes a:hover { background: #c32d36; color: #fff; }
+    .footer-columnas .footer-redes a:hover {
+        background: #c32d36;
+        color: #fff;
+    }
 }
 
 /* Línea final */
+
 .footer-copy {
     margin: 2.5rem 0 0;
     padding-top: 1.25rem;
@@ -377,10 +700,276 @@
     color: #6b7b8c;
 }
 
-/* Celular: logos de a 2 por fila */
-@media (max-width: 767px) {
-    .footer-logos { justify-content: center; }
-    .footer-logos img { height: 2.8rem; max-width: 40%; }
-    .footer-logos .logo-grande { height: 4.2rem; }
+/* Sección principal */
+
+.cuenta-seccion {
+    background: #fbf1e6;
+    padding: 4rem 0;
+    min-height: 600px;
 }
 
+.cuenta-seccion > .container {
+    max-width: 1140px;
+}
+
+.cuenta-seccion .row {
+    align-items: center;
+}
+
+/* Etiqueta */
+
+.cuenta-etiqueta {
+    display: inline-block;
+    background: #e3f4f8;
+    color: #126a7c;
+    padding: .4rem .9rem;
+    border-radius: 30px;
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Título */
+
+.cuenta-titulo {
+    color: #04182a;
+    font-size: clamp(2.5rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.cuenta-titulo span {
+    display: block;
+    color: #c32d36;
+}
+
+/* Descripción */
+
+.cuenta-descripcion {
+    color: #566573;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 34rem;
+    margin: 1.2rem 0 1.8rem;
+}
+
+/* Beneficios */
+
+.cuenta-beneficio {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin-bottom: 1rem;
+    color: #04182a;
+    font-weight: 600;
+}
+
+.cuenta-beneficio span {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #f6d3c4;
+    color: #c32d36;
+}
+
+/* Tarjeta del formulario */
+
+.cuenta-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1.3rem;
+    box-shadow: 0 1rem 2.5rem rgba(4, 24, 42, .10);
+}
+
+.cuenta-card h2 {
+    color: #04182a;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+}
+
+.cuenta-card > p {
+    color: #6b747c;
+    margin-bottom: 1.5rem;
+}
+
+.cuenta-card .form-label {
+    color: #04182a;
+    font-weight: 600;
+}
+
+/* Campos del formulario */
+
+.cuenta-input {
+    min-height: 46px;
+    border: 1px solid #d8d8d8;
+    border-radius: .65rem;
+    padding: .65rem .8rem;
+}
+
+.cuenta-input:focus {
+    border-color: #04182a;
+    box-shadow: 0 0 0 .2rem rgba(4, 24, 42, .10);
+}
+
+/* Botón del formulario */
+
+.btn-cuenta {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background: #c32d36;
+    color: white;
+    padding: .85rem 1rem;
+    font-weight: 700;
+    transition: background .2s ease;
+}
+
+.btn-cuenta:hover {
+    background: #a3232b;
+    color: white;
+}
+
+/* Texto inferior */
+
+.cuenta-pie {
+    text-align: center;
+    margin: 1.5rem 0 0 !important;
+    color: #566573;
+}
+
+.cuenta-pie a,
+.cuenta-enlace {
+    color: #04182a;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.cuenta-enlace {
+    color: #c32d36;
+    font-size: .9rem;
+}
+
+/* Pestañas de registro */
+
+.cuenta-tabs {
+    display: flex;
+    background: #f1f2f4;
+    border-radius: 50px;
+    padding: .25rem;
+    margin-bottom: 1.5rem;
+}
+
+.cuenta-tab {
+    flex: 1;
+    border: none;
+    border-radius: 50px;
+    padding: .7rem;
+    background: transparent;
+    color: #566573;
+    font-weight: 600;
+}
+
+.cuenta-tab.activo {
+    background: #04182a;
+    color: #fff;
+}
+
+/* Subtítulos */
+
+.cuenta-subtitulo {
+    color: #04182a;
+    font-size: 1rem;
+    font-weight: 700;
+    border-left: 4px solid #c32d36;
+    padding-left: .6rem;
+    margin: 1.2rem 0;
+}
+
+/* Avisos */
+
+.cuenta-aviso {
+    background: #e3f4f8;
+    color: #126a7c;
+    border-radius: .7rem;
+    padding: .8rem;
+    font-size: .85rem;
+}
+
+
+
+
+@media (max-width: 991px) {
+
+    .navbar .d-flex {
+        margin-top: 1rem;
+    }
+
+    .cuenta-seccion {
+        padding: 2.5rem 0;
+    }
+
+    .cuenta-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Footer */
+
+    .footer-logos {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .footer-logos img {
+        height: 2.8rem;
+        max-width: 40%;
+    }
+
+    .footer-logos .logo-grande {
+        height: 4.2rem;
+    }
+
+    .footer-columnas {
+        text-align: center;
+    }
+
+    .footer-redes {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 575px) {
+
+    /* Tarjetas */
+
+    .tarjeta {
+        padding: 1.5rem;
+    }
+
+    .tarjeta-logo {
+        width: 4rem;
+        height: 4rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .btn-tarjeta {
+        width: 100%;
+    }
+
+    /* Cuentas */
+
+    .cuenta-card {
+        padding: 1.3rem;
+    }
+
+    .cuenta-titulo {
+        font-size: 2.4rem;
+    }
+}
