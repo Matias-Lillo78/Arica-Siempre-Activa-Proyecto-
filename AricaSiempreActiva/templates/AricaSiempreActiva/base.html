@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     {% load static %}
     <link rel="stylesheet" href="{% static '/AricaSiempreActiva/css/style.css' %}?v=3" />
+    <link rel="stylesheet" href="{% static '/AricaSiempreActiva/css/css_gremio.css' %}?v=3" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    
 </head>
 
 <body>
@@ -76,8 +79,8 @@
             Iniciar sesión
         </a>
     {% endif %}
-
-    <a class="btn btn-planifica" href="#">
+  
+    <a class="btn btn-planifica" href="{% url 'panel_gremio' %}">
         Planifica tu viaje
     </a>
 
