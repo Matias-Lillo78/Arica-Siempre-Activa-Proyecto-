@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponseForbidden
 from .models import PerfilUsuario
 
 
@@ -84,6 +84,8 @@ def registro_usuario(request):
 
 def login_usuario(request):
 
+    
+
     if request.method == 'POST':
 
         identificador = request.POST.get('username', '').strip()
@@ -123,7 +125,7 @@ def login_usuario(request):
 
             
             if usuario.is_superuser:
-                return redirect('/admin/')
+                return redirect('panel_administrador')
 
             
             try:
@@ -196,3 +198,44 @@ def panel_turista(request):
         return redirect('/')
 
     return render(request, 'cuentas/panel_turista.html')
+
+
+@login_required
+def panel_administrador(request):
+
+    # Solo los superusuarios pueden entrar
+    if not request.user.is_superuser:
+        return HttpResponseForbidden(
+            'No tienes permiso para acceder a este panel.'
+        )
+
+    # Obtener todos los usuarios registrados
+    usuarios = User.objects.all().order_by('username')
+
+    usuarios_panel = []
+
+    for usuario in usuarios:
+
+        try:
+            rol = usuario.perfil.get_rol_display()
+        except PerfilUsuario.DoesNotExist:
+            rol = 'Administrador' if usuario.is_superuser else 'Sin perfil'
+
+        usuarios_panel.append({
+            'usuario': usuario,
+            'rol': rol
+        })
+
+    contexto = {
+        'usuarios': usuarios_panel,
+        'total_usuarios': User.objects.count(),
+        'total_turistas': PerfilUsuario.objects.filter(rol='turista').count(),
+        'total_gremios': PerfilUsuario.objects.filter(rol='gremio').count(),
+        'total_moderadores': PerfilUsuario.objects.filter(rol='moderador').count(),
+    }
+
+    return render(
+        request,
+        'cuentas/panel_administrador.html',
+        contexto
+    )
