@@ -1,3 +1,68 @@
-<h1>Panel del Turista</h1>
-<p>Bienvenido a Arica Siempre Activa.</p>
-<a href="{% url 'logout' %}">Cerrar sesión</a>
+
+{% extends 'AricaSiempreActiva/base.html' %}
+
+{% block title %}Panel del Turista | Arica Siempre Activa{% endblock %}
+
+{% block content %}
+
+<section class="panel-turista">
+
+    <div class="panel-turista-bienvenida">
+        <div>
+            <span class="panel-etiqueta">MI ESPACIO</span>
+            <h1>¡Bienvenido, {{ request.user.first_name|default:request.user.username }}!</h1>
+            <p>
+                Descubre Arica, conoce sus atractivos turísticos
+                y disfruta de todo lo que nuestra región tiene para ofrecer.
+            </p>
+        </div>
+    </div>
+
+    <div class="panel-turista-contenido">
+
+        <h2>¿Qué deseas hacer?</h2>
+        <p>Accede rápidamente a las principales secciones de la plataforma.</p>
+
+        <div class="panel-turista-tarjetas">
+
+            <article class="turista-tarjeta">
+                <div class="turista-icono">🌄</div>
+                <h3>Explorar destinos</h3>
+                <p>
+                    Descubre lugares turísticos, paisajes y atractivos
+                    de Arica y Parinacota.
+                </p>
+                <a href="/">Explorar destinos</a>
+            </article>
+
+            <article class="turista-tarjeta">
+                <div class="turista-icono">⭐</div>
+                <h3>Mis experiencias</h3>
+                <p>
+                    Consulta y gestiona tus experiencias
+                    turísticas compartidas.
+                </p>
+                <a href="/">Ver experiencias</a>
+            </article>
+
+            <article class="turista-tarjeta">
+                <div class="turista-icono">👤</div>
+                <h3>Mi cuenta</h3>
+                <p>
+                    Consulta tus datos personales y la información
+                    de tu cuenta.
+                </p>
+                <a href="/">Mi información</a>
+            </article>
+
+        </div>
+
+    </div>
+
+    <div class="panel-turista-pie">
+        <p>Arica Siempre Activa · Vive y descubre nuestra región.</p>
+    </div>
+
+</section>
+
+{% endblock %}
