@@ -9,11 +9,11 @@ def ActividadCreateView(request):
         if form.is_valid():
             form.save()
             messages.success(request, "actividad creada")
-            return redirect('listar')  
+            return redirect('listar_gremio')  
     return render(request, 'panel_gremio/actividad_gremio_form.html', {'accion':'Crear', 'form':form})
 
 def ActividadListView(request):
-    return render(request, 'panel_gremio/actividad_gremio_list.html', {'lista':Actividad.objects.all()})
+    return render(request, 'panel_gremio/actividad_gremio_list.html', {'actividades':Actividad.objects.all()})
 
 def ActividadUpdateView(request, id):
 
@@ -24,6 +24,6 @@ def ActividadUpdateView(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, "Actividad actualizado")
-            return redirect('listar')  
+            return redirect('listar_gremio')  
     return render(request, 'panel_gremio/actividad_gremio_form.html', {'accion':'Actualizar', 'form':form})
 
