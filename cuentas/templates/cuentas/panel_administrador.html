@@ -1,0 +1,140 @@
+
+{% extends 'AricaSiempreActiva/base.html' %}
+
+{% block title %}Panel de Administración | Arica Siempre Activa{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">Panel de Administración</h1>
+        <p class="text-muted">
+            Bienvenido, {{ request.user.first_name|default:request.user.username }}.
+            Desde aquí puedes supervisar la plataforma.
+        </p>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-people fs-2 text-primary"></i>
+                    <h6 class="text-muted mt-3">Usuarios registrados</h6>
+                    <h2 class="fw-bold">{{ total_usuarios }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-person-walking fs-2 text-success"></i>
+                    <h6 class="text-muted mt-3">Turistas</h6>
+                    <h2 class="fw-bold">{{ total_turistas }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-building fs-2 text-warning"></i>
+                    <h6 class="text-muted mt-3">Gremios</h6>
+                    <h2 class="fw-bold">{{ total_gremios }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-shield-check fs-2 text-danger"></i>
+                    <h6 class="text-muted mt-3">Moderadores</h6>
+                    <h2 class="fw-bold">{{ total_moderadores }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Gestión de usuarios -->
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-white py-3">
+            <h4 class="mb-0 fw-bold">
+                <i class="bi bi-person-lines-fill me-2"></i>
+                Usuarios de la plataforma
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Correo electrónico</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in usuarios %}
+
+                        <tr>
+                            <td>{{ item.usuario.username }}</td>
+
+                            <td>
+                                {{ item.usuario.first_name }}
+                                {{ item.usuario.last_name }}
+                            </td>
+
+                            <td>{{ item.usuario.email }}</td>
+
+                            <td>
+                                <span class="badge bg-secondary">
+                                    {{ item.rol }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {% if item.usuario.is_active %}
+                                    <span class="badge bg-success">Activo</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Inactivo</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                No existen usuarios registrados.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}
