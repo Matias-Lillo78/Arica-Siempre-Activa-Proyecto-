@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{% static '/AricaSiempreActiva/css/style.css' %}?v=3" />
     <link rel="stylesheet" href="{% static '/AricaSiempreActiva/css/css_gremio.css' %}?v=3" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-    
 </head>
 
 <body>
@@ -66,24 +65,29 @@
 
                 <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
 
-    {% if user.is_authenticated %}
-        <span class="nav-link">
-            Hola, {{ user.first_name|default:user.username }}
-        </span>
+   <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
+   
+        {% if user.is_authenticated %}
+            <span class="nav-link">
+                Hola, {{ user.first_name|default:user.username }}
+            </span>
 
-        <a class="btn btn-login-nav" href="{% url 'logout' %}">
-            Cerrar sesión
-        </a>
-    {% else %}
-        <a class="btn btn-login-nav" href="{% url 'login' %}">
-            Iniciar sesión
-        </a>
-    {% endif %}
-  
-    <a class="btn btn-planifica" href="{% url 'panel_gremio' %}">
-        Planifica tu viaje
-    </a>
+            <!-- Botón directo del Panel Gremio para probar -->
+            <a href="{% url 'listar_gremio' %}" class="btn fw-bold text-white" style="background-color: #fb923c; border-radius: 0.5rem;">
+                Panel Gremio
+            </a>
 
+            <!-- Botón de cerrar sesión -->
+            <a class="btn btn-login-nav" href="{% url 'logout' %}">
+                Cerrar sesión
+            </a>
+        {% else %}
+            <a class="btn btn-login-nav" href="{% url 'login' %}">
+                Iniciar sesión
+            </a>
+        {% endif %}
+    
+    </div>
 </div>
             </div>
 

@@ -137,7 +137,7 @@ def login_usuario(request):
                 return redirect('panel_moderador')
 
             elif rol == 'gremio':
-                return redirect('panel_gremio')
+                return redirect('listar_gremio')
 
             else:
                 return redirect('panel_turista')
